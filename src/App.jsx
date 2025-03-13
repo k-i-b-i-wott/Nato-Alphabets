@@ -109,13 +109,9 @@ const App = () => {
     <div className='app-details'>
         <h1>NATO PHONETIC ALPHABET</h1>
        <h4>Convert text to nato phonetic alphabets</h4>
-       <textarea name="" id="" value={text} onChange={handleTextChange} >
-
-       </textarea>
+       <textarea name="" id="" value={text} onChange={handleTextChange} placeholder='Enter your text ...' ></textarea>
        <div  className='output'>
-       <h3>{result}</h3>
-       
-      
+        {result}      
        </div>
     </div>
   )
