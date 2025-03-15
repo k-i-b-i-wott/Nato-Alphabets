@@ -38,16 +38,23 @@ body,html{
   }
   .output{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    max-width: 70vh;
+    gap: .5rem;
+    max-width: 100vh;
+    font-size: 2rem;
   }
-  .output p{
-    font-size: 1.5rem;
-    font-weight: 600;
+  .output span{
+    font-weight: 900;
   }
+  .output span:nth-child(even){
+    color: rgb(207, 61, 17);
+  }
+  .output span:nth-child(odd){
+    color: rgb(13, 121, 49);
+  }
+
 
   @media screen and (max-width: 600px) {
     .app-details textarea{
@@ -56,3 +63,4 @@ body,html{
 
     
   }
+

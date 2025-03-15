@@ -1,12 +1,13 @@
-import React, { use } from 'react'
- import './App.css'
+
+ import alphabet from 'nato-phonetic-alphabet'
+import './App.css'
 
 import { useState } from 'react'
 const App = () => {
 
   const [text, setText] = useState('')
-  const [result, setResult] = useState('')
-   const aphabets={
+  const [result, setResult] = useState([])
+   const alphabets={
     'A':'Alfa',
     'B':'Bravo',
     'C':'Charlie',
@@ -44,15 +45,15 @@ const App = () => {
     '7':'Seven',
     '8':'Eight',
     '9':'Nine',
-    '!':'Exclamation Mark',
-    '"':'Double Quote',
+    '!':`'Exclamation Mark'`,
+    '"':`'Double Quote'`,
     '#':'Hash',
-    '$':'Dollar Sign',
-    '%':'Percent Sign',
+    '$':`'Dollar Sign'`,
+    '%':`'Percent Sign'`,
     '&':'Ampersand',
     "'":"Apostrophe",
-    '(':'Left Parenthesis',
-    ')':'Right Parenthesis',
+    '(':`'Left Parenthesis'`,
+    ')':`'Right Parenthesis'`,
     '*':'Asterisk',
     '+':'Plus Sign',
     ',':'Comma',
@@ -61,57 +62,48 @@ const App = () => {
     '/':'Slash',
     ':':'Colon',
     ';':'Semicolon',
-    '<':'Less Than',
-    '=':'Equals Sign',
-    '>':'Greater Than',
-    '?':'Question Mark',
-    '@':'At Symbol',
-    '[':'Left Square Bracket',
+    '<':`'Less Than'`,
+    '=':`'Equals Sign'`,
+    '>':`'Greater Than'`,
+    '?':`'Question Mark'`,
+    '@':`'At Symbol'`,
+    '[':`'Left Square Bracket'`,
     '\\':'Backslash',
-    ']':'Right Square Bracket',
+    ']':`'Right Square Bracket'`,
     '^':'Caret',
     '_':'Underscore',
-    '`':'Grave Accent',
-    '{':'Left Curly Brace',
-    '|':'Vertical Bar',
-    '}':'Right Curly Brace',
+    '`':`"Grave Accent"`,
+    '{':`'Left Curly Brace'`,
+    '|':`'Vertical Bar'`,
+    '}':`'Right Curly Brace'`,
     '~':'Tilde',
    };
 
    
    const convertToNato = (text) => {
-
-    const words = text.split(' ')
-    const natoWords = words.map(word => {
-      const letters = word.split('')
-      const natoLetters = letters.map(letter => {
-        const nato = aphabets[letter.toUpperCase()]
-        return nato
-      })
-      return natoLetters.join(' ')
-    })
-    setResult(natoWords.join(' '))
-
+ 
+    const words= text.toUpperCase().split('');
+    const natoWords= words.map(letter=> alphabets[letter] || letter)
+   setResult(natoWords);  
      
-   }
+   };
 
    const handleTextChange = (e) => {
     setText(e.target.value)
     convertToNato(e.target.value)
    }
-
-
-  
+ 
    
-
-
   return (
     <div className='app-details'>
         <h1>NATO PHONETIC ALPHABET</h1>
        <h4>Convert text to nato phonetic alphabets</h4>
-       <textarea name="" id="" value={text} onChange={handleTextChange} placeholder='Enter your text ...' ></textarea>
-       <div  className='output'>
-        {result}      
+       <textarea  value={text} onChange={handleTextChange} placeholder='Enter your text ...' ></textarea>
+       <div  className='output'>  
+        NATO:      
+       {result.map((word, index) => (
+        <span key={index} >{word}</span>
+       ))}            
        </div>
     </div>
   )
